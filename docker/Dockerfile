@@ -1,9 +1,6 @@
 # Use PHP 8.1 FPM with Apache
 FROM php:8.1-fpm-alpine
 
-# Set working directory
-WORKDIR /var/www/html
-
 # Install required dependencies
 RUN apk add --no-cache \
     nginx \
@@ -21,12 +18,15 @@ RUN apk add --no-cache \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql intl
 
+# Set working directory
+WORKDIR /var/www/html
+
 # Copy application files
 COPY . /var/www/html/
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --prefer-dist
+RUN composer install --no-dev --prefer-dist --no-interaction 
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
