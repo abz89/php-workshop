@@ -24,8 +24,6 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . /var/www/html/
 
-RUN pwd && ls -la
-
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --prefer-dist --no-interaction 
