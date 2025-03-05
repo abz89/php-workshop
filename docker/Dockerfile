@@ -21,6 +21,8 @@ RUN apk add --no-cache \
 # Set working directory
 WORKDIR /var/www/html
 
+RUN ls
+
 # Copy application files
 COPY . /var/www/html/
 
