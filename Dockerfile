@@ -1,4 +1,4 @@
-# Use PHP 8.1 FPM with Apache
+# Use PHP 8.1 FPM with NGINX
 FROM php:8.1-fpm-alpine
 
 # Install required dependencies
